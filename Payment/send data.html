@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Page</title>
+</head>
+<body>
+    <h1>Input Data Form</h1>
+    
+    <div>
+        <label for="total-amount">Total Amount:</label>
+        <input type="text" id="total-amount" placeholder="Enter the total amount">
+        <label for="order-id">Order ID:</label>
+        <input type="text" id="order-id" placeholder="Enter the order ID">
+        <label for="order-id">Customer ID:</label>
+        <input type="text" id="customer-id" placeholder="Enter the Customer ID">
+    </div>
+    <button id="send-data-button">Send Data</button>
+
+    <script>
+        // Function to calculate the date 4 days from the current date
+        function calculateFutureDate() {
+            const currentDate = new Date();
+            const futureDate = new Date(currentDate.getTime() + (4 * 24 * 60 * 60 * 1000));
+            return futureDate.toISOString().split('T')[0];
+        }
+
+        document.getElementById('send-data-button').addEventListener('click', function() {
+            // Get the values from the input fields
+            const totalAmount = document.getElementById('total-amount').value;
+            const orderId = document.getElementById('order-id').value;
+            const customerId = document.getElementById('customer-id').value;
+            
+            // Get the date 4 days from the current date
+            const deliveryDate = calculateFutureDate();
+
+            // Construct the query string with the data
+            const queryString = `totalAmount=${encodeURIComponent(totalAmount)}&orderId=${encodeURIComponent(orderId)}&customerId=${encodeURIComponent(customerId)}&deliveryDate=${encodeURIComponent(deliveryDate)}`;
+
+            // Redirect the user to the other page with the data in the URL
+            window.location.href = 'PaymentIndex.html?' + queryString;
+        });
+    </script>
+</body>
+</html>

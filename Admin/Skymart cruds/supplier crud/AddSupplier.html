@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyMart Supplier CRUD</title>
+
+ 
+
+    <!--bootstarp-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-light fs-3 mb-5" style="background-color: #1877F2 !important;">
+    <a href="" class="navbar-brand d-flex align-items-center " style="margin-left: 50px !important;">
+        <img src="images/logo.jpg" alt="logo is missing" width="120" height="50" >
+    </a>
+
+    <div class="d-flex align-items-center mx-auto justify-content-center" style="margin-left: 450px !important;"> <!-- Adjust the margin value as needed -->
+    <h2 class="m-0" style="color: white;">Supplier Details</h2>
+    </div>
+
+    <button class="btn btn-outline d-flex align-items-center" type="submit" style="border-color: white;color: white; margin-right: 50px;" id="supplier_add_back_button">Back</button>
+</nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <div style=" background-color: rgba(161, 212, 248, 0.6);padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); height:fit-content; ">
+            <p style="font-size: 23px; font-weight: bold; color: rgb(39, 37, 37); margin-bottom: 10px; ">"Embark on a New Journey 🚚✨"</p>
+            <p style="font-size: 18px; font-weight: normal; color: rgb(49, 48, 48);">Polishing the finer points for a seamless shopping experience. Your expertise keeps the gears turning smoothly. Thank you for your attention to detail!</p>
+          </div>
+          <br>
+          <br>
+          <br>
+        </div>
+
+        <div class="col-2"></div>
+
+        <div class="col-6" style="background-color: rgba(193, 234, 243, 0.6);padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); height:fit-content; ">
+          <div class="text-center" mb-4>
+            <h3>Add New Supplier</h3>
+            <p class="text-muted">Complete the form below to add new supplier.</p>
+          </div>
+
+            <form action="AddSupplierProcess.php" method="POST" enctype="multipart/form-data">
+            
+              <div class="form-group mb-3">
+                <label for="supplier_id">Supplier ID</label>
+                <input type="number" class="form-control" id="supplier_id" name="supplier_id" 
+                placeholder="Ex: 1234" required>
+              </div>
+              <div class="form-group mb-3">
+                <label for="supplier_name">Supplier Name</label>
+                <input type="text" class="form-control" id="supplier_name" name="supplier_name" 
+                placeholder="Ex: Alex Williom" required>
+              </div>
+    
+              <div class="form-group mb-3">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Ex: example123@gmail.com" required>
+              </div>
+    
+              <div class="form-group mb-3">
+                <label for="phone_number">Phone Number</label>
+                <input type="tel" class="form-control" id="phone_number" name="phone_number"  placeholder="Ex: 07x xxxxxxx" required>
+              </div>
+
+              <div class="form-group mb-3">
+                <label for="supplier_image">Image</label>
+                <input type="file" class="form-control" id="supplier_image" name="supplier_image" accept="image/*" required>
+              </div>
+      
+              <div class="form-group mb-3">
+                <label for="due_payment">Due Payment</label>
+                <input type="float" class="form-control" id="due_payment" name="due_payment" placeholder="Ex: 1234.56" required>
+              </div>
+          
+              <div class="container d-flex justify-content-center ">
+                <button type="submit" class="btn btn-success">Add Supplier</button>
+              </div>
+              
+            </form>
+        </div>  
+      </div>
+    </div>
+        
+
+    <script>
+      document.getElementById('supplier_add_back_button').addEventListener('click', function() {
+          window.location.href='SupplierIndex.php'; 
+      });
+    </script>
+    <!--bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
