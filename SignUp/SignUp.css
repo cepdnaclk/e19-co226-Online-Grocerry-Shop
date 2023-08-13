@@ -1,0 +1,58 @@
+body{
+    background-image:url("./bg.png");
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}
+.regform{
+    width:  600px;
+    background-color: rgba(190, 183, 223,0.4);
+    padding: 10px 10px 20px;
+    margin: 50px 100px;
+    border-radius: 10px;
+    position: relative;
+    left: 50%;
+}
+.regform h3{
+    color: #090446;
+    text-align: center;
+}
+.regform label{
+    display: block;
+    
+}
+.input input, select{
+    font-size: 1.1em;
+    width: 100%;
+    border: #385F71;
+    box-shadow: 2px;
+    border-radius: 8px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    margin: 5px 0px 15px;
+}
+input:focus{
+    background-color:#B8E1FF;
+}
+.btn{
+    text-align: center;
+}
+button{
+    font-size: 30px;
+    color:white;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid;
+    box-shadow: 2px ;
+    background-color: #188754;
+    width: 100%;
+}
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* This will create two equal columns */
+    gap: 30px;
+}
+
+
+  
+  
+  

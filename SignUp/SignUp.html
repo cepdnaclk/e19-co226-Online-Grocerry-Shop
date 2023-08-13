@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/SignUp.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+</head>
+<body>  
+    <div class="regform">
+        <h3>Sign Up</h3>
+        <form action="./signup.php" method="post" onsubmit="return checkPassword();" >
+            
+            <div class="container">
+                <div left-side>
+                    <div class="input">
+                        <label for="fname">First Name</label>
+                        <input type="text" name="fname" id="fname"  required>
+                    </div>
+                    <div class="input" >
+                        <label for="lname">Last Name</label>
+                        <input type="text" name="lname" id="lname"  required>
+                    </div>
+                    <div class="input">
+                        <label for="phonenum">Phone Number</label>
+                        <input type="tel" name="phonenum" id="phonenum"  required>
+                    </div>
+                    
+                    <div class="input" >
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                    <div class="input">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password"  required minlength="8" maxlength="12" placeholder="minimum length 8" required>
+                    </div>
+                    <div class="input"> 
+                        <label for="re-enter-password">Re-Enter-Password</label>
+                        <input type="password" name="re_enter_password" id="re-enter-password"  required minlength="6" maxlength="12" required>
+                    </div>
+                </div>
+                
+                <div class="right-side">
+                    <div class="input">
+                        <label for="dateofbirth">Date of Birth</label>
+                        <input type="date" name="dateofbirth" id="dateofbirth"  min="1950" required>
+                    </div>
+                    <div class="input">
+                        <label for="district">District</label>
+                        <select width=100 style="width: 180px" name="district">
+                            <option value="Jaffna" name="jaffna">Jaffna</option>
+                            <option value="Killinochi" name="killinochi">Killinochi</option>
+                            <option value="Vavuniya" name="vavuniya">Vavuniya</option>
+                            <option value="Mullaitheevu" name="mullaiteevu">Mullaitheevu</option>
+                            <option value="Mannar" name="mannar">Mannar</option>
+                            <option value='' selected>Select the District</option>
+                        </select>
+                        <label for="city">City</label>
+                        <input type="text" name="city" id="city" placeholder="Enter the City" required>
+                    </div>
+                    <div class="input">
+                        <label for="street">Street</label>
+                        <input type="text" name="street" id="street" placeholder="Enter the Street" required>
+                        <label for="house_no">Residence Number</label>
+                        <input type="number" name="house_no" id="house_no" placeholder="Enter the Residence Number" required>
+                    </div>
+                </div>
+            </div>
+            <div class="btn">
+                <button type="submit">Sign up</button>
+            </div>
+        </form>
+    </div>
+    <script src="./js/pwdchk.js"></script>
+</body>
+</html>
