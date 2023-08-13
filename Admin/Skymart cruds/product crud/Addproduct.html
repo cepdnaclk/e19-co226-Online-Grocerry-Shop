@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyMart Product CRUD</title>
+
+
+    <!--bootstarp-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+  <nav class="navbar navbar-light fs-3 mb-5" style="background-color: #1877F2 !important;">
+    <a href="" class="navbar-brand d-flex align-items-center " style="margin-left: 50px !important;">
+        <img src="images/logo.jpg" alt="logo is missing" width="120" height="50" >
+    </a>
+
+    <div class="d-flex align-items-center mx-auto justify-content-center" style="margin-left: 450px !important;"> <!-- Adjust the margin value as needed -->
+    <h2 class="m-0" style="color: rgb(248, 246, 246);">Product Details</h2>
+    </div>
+
+    <button class="btn btn-outline d-flex align-items-center" type="submit" style="border-color: rgb(246, 246, 246);color: rgb(252, 251, 251); margin-right: 50px;" id="product_add_back_button">Back</button>
+</nav>
+    
+    <div class="container">
+      <div class="row ">
+        <div class="col-4">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <div style=" background-color: rgba(161, 212, 248, 0.6);padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); height:fit-content; ">
+            <p style="font-size: 23px; font-weight: bold; color: rgb(17, 17, 17); margin-bottom: 10px; ">"Crafting Quality, One Product at a Time 🛍️✨"</p>
+            <p style="font-size: 18px; font-weight: normal; color: rgb(28, 27, 27);">Welcome to the 'Add New Product' page, where every detail becomes an ingredient in the recipe of excellence. As you enter the product information, you're sculpting an experience that delights our customers. Your attention to detail shapes the path of satisfaction. With each addition, we're creating a collection of dreams. Thank you for your dedication to quality and innovation.</p>
+          </div>
+          <br>
+          <br>
+          <br>
+        </div>
+
+        <div class="col-2"></div>
+
+        <div class="col-6" style="background-color: rgba(193, 234, 243, 0.6);padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); height:fit-content; ">
+          <div class="text-center" mb-4>
+            <h3>Add New Product</h3>
+            <p class="text-muted">Complete the form below to add new product.</p>
+          </div>
+  
+          <div class="container d-felx justify-content-center"></div>
+
+            <form action="Addproduct_process.php" method="POST" enctype="multipart/form-data">
+            
+              <div class="form-group mb-3">
+                <label for="product_name">Product Name</label>
+                <input type="text" class="form-control" id="product_name" name="product_name" 
+                placeholder="Ex: Green Apple" required>
+              </div>
+    
+              <div class="form-group mb-3">
+                <label for="product_category">Product Category</label>
+                <input type="text" class="form-control" id="product_category" name="product_category" placeholder="Ex: Apple" required>
+              </div>
+    
+              <div class="form-group mb-3">
+                <label for="product_price">Buying Price</label>
+                <input type="float" class="form-control" id="buying_price" name="buying_price"  placeholder="Ex: 1234.56" required>
+              </div>
+    
+              <div class="form-group mb-3">
+                <label for="product_price">Selling Price</label>
+                <input type="float" class="form-control" id="selling_price" name="selling_price"  placeholder="Ex: 2345.67" required>
+              </div>
+      
+              <div class="form-group mb-3">
+                <label for="product_image">Product Image</label>
+                <input type="file" class="form-control" id="product_image" name="product_image" accept="image/*" required>
+              </div>
+          
+              <div class="form-group mb-3">
+                <label for="product_description">Product Description</label>
+                <textarea class="form-control" id="product_description" name="product_description" rows="3" placeholder="Ex: Comment Here..!" required></textarea>
+              </div>
+    
+              <div class="container d-felx justify-content-center">
+                <button type="submit" class="btn btn-success">Add Product</button>
+              </div>
+              
+            </form>
+        </div>  
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('product_add_back_button').addEventListener('click', function() {
+          window.location.href='product_index.php'; 
+      });
+    </script>
+        
+
+    <!--bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
