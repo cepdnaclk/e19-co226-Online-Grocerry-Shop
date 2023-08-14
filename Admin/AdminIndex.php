@@ -75,7 +75,12 @@
 
         </div>
     </div>
- 
+    <script>
+      document.getElementById('admin_log_out_button').addEventListener('click', function() {
+          window.location.href='http://localhost/co226%20project/LogIn/LogIn.html'; // Replace 'Admin_home.html' with your Admin home page URL
+      });
+    </script>
+
 
     
     <!--bootstrap-->
