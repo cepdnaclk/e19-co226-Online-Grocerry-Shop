@@ -32,8 +32,8 @@ The purpose of this project is to create a seamless online shopping experience f
 
 ## Links
 
-- [Project Repository](https://github.com/cepdnaclk/e19-co226-Online-Grocery-Shop){:target="_blank"}
-- [Project Page](https://cepdnaclk.github.io/e19-co226-Online-Grocery-Shop/){:target="_blank"}
+- [Project Repository](https://github.com/cepdnaclk/e19-co226-Online-Grocery-Shop)
+- [Project Page](https://cepdnaclk.github.io/e19-co226-Online-Grocery-Shop/)
 - [Department of Computer Engineering](http://www.ce.pdn.ac.lk/)
 - [University of Peradeniya](https://eng.pdn.ac.lk/)
 
