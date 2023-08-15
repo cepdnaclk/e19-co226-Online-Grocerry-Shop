@@ -52,10 +52,10 @@
 
 
         <div class="d-flex align-items-center mx-auto justify-content-center" style="margin-left: 350px !important;"> <!-- Adjust the margin value as needed -->
-        <h2 class="m-0" style="color: white;">Order Details</h2>
+        <h2 class="m-0" style="color: white; margin-left: 100px !important;">Order Details</h2>
         </div>
 
-        <button class="btn btn-outline-primary" type="submit" style="border-color: white;color: white;" id="product_index_back_button">Back</button>
+        <button class="btn btn-outline-primary" type="submit" style="border-color: white;color: white;" id="order_index_back_button">Back</button>
     </nav>
 
     <div style="text-align: center; background-color: #d0efff;padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); height:fit-content; width: 80%; margin-left: 150px;">
@@ -108,7 +108,7 @@
 
     <script>
       document.getElementById('order_index_back_button').addEventListener('click', function() {
-          window.location.href='http://localhost/co226/co226%20project/Admin/AdminIndex.php'; // Replace 'Admin_home.html' with your Admin home page URL
+          window.location.href='http://localhost/co226/e19-co226-Online-Grocerry-Shop/Admin/AdminIndex.php'; // Replace 'Admin_home.html' with your Admin home page URL
       });
     </script>
     

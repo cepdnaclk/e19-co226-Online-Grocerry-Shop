@@ -21,7 +21,7 @@
         </a>
 
         <div class="d-flex align-items-center mx-auto justify-content-center" style="margin-left: 350px !important;"> <!-- Adjust the margin value as needed -->
-        <h2 class="m-0" style="color: white;">Customer Details</h2>
+        <h2 class="m-0" style="color: white;margin-left: 70px !important;">Customer Details</h2>
         </div>
 
         <button class="btn btn-outline" type="submit" style="border-color: white;color: white;" id="customer_index_back_button">Back</button>
@@ -31,7 +31,7 @@
 
       <div class="row">
         <div class="col">
-        <table class="table table-hover text-center table-striped" style="background-color: rgba(242, 242, 242, 0.8) !important; margin-left: -100px !important;">
+        <table class="table table-hover text-center table-striped" style="background-color: rgba(242, 242, 242, 0.8) !important; margin-left: 0px !important;">
         <thead class="table-dark">
         <tr>
           <th scope="col">ID</th>
