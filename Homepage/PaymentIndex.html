@@ -116,50 +116,35 @@
         document.getElementById('deliveryDate').value = deliveryDate;
     </script>
 
-<script>
-    // Add an event listener to the form submission
-    document.getElementById('payment-confirm-button').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the form from submitting
+        <script>
+            // Add an event listener to the form submission
+            document.getElementById('pay-now-button').addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the form from submitting
+                
+                // Get form field values
+                const cardNumber = document.getElementById('cardNumber').value;
+                const cardName = document.getElementById('cardName').value;
+                const expiryDate = document.getElementById('expiryDate').value;
+                const cvv = document.getElementById('cvv').value;
+                
+                // Check if all fields are filled
+                if (cardNumber && cardName && expiryDate && cvv) {
+                    // Display an alert if the form is filled
+                    alert('Payment successful');
+                    // Clear the form fields
+                    resetForm();
+                } else {
+                    alert('Please fill in all the fields');
+                }
+            });
 
-        // Get form field values
-        const customerId = document.getElementById('customerId').value;
-        const totalAmount = document.getElementById('totalAmount').value;
-        const orderDate = document.getElementById('orderDate').value;
-        const deliveryDate = document.getElementById('deliveryDate').value;
-
-        // Display a success message
-        alert('Your order is confirmed.');
-    });
-
-    // Add an event listener to the form submission
-    document.getElementById('pay-now-button').addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent the form from submitting
-        
-        // Get form field values
-        const cardNumber = document.getElementById('cardNumber').value;
-        const cardName = document.getElementById('cardName').value;
-        const expiryDate = document.getElementById('expiryDate').value;
-        const cvv = document.getElementById('cvv').value;
-        
-        // Check if all fields are filled
-        if (cardNumber && cardName && expiryDate && cvv) {
-            // Display an alert if the form is filled
-            alert('Payment successful');
-            resetForm();
-        } else {
-            alert('Please fill in all the fields');
-        }
-    });
-
-    // Function to reset the form fields
-    function resetForm() {
-        document.getElementById('cardNumber').value = '';
-        document.getElementById('cardName').value = '';
-        document.getElementById('expiryDate').value = '';
-        document.getElementById('cvv').value = '';
-    }
-</script>
-
-
+            // Function to reset the form fields
+            function resetForm() {
+                document.getElementById('cardNumber').value = '';
+                document.getElementById('cardName').value = '';
+                document.getElementById('expiryDate').value = '';
+                document.getElementById('cvv').value = '';
+            }
+        </script>
 </body>
 </html>

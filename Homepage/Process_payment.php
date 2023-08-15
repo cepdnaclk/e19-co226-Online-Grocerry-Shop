@@ -28,6 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($stmt->execute()) {
         $response['success'] = true;
         $response['message'] = "Payment processed and data inserted successfully!";
+        
+        $redirectUrl = 'project.php?reload=true'; 
+        header("Location: $redirectUrl");
+        echo "<script>alert('Payment successful')</script>";
     } else {
         $response['success'] = false;
         $response['message'] = "Error: " . $stmt->error;
