@@ -27,7 +27,7 @@ $conn = new mysqli('localhost', 'root', '', 'project');
     
     if ($result->num_rows > 0) {
         $output = "Email address already exists.";
-        echo "<script>alert('$output'); window.location.href = './SignUp.html';</script>";
+        echo "<script>alert('$output'); window.location.href = 'http://localhost/e19-co226-Online-Grocery-Shop/SignUp/SignUp.html';</script>";
         
     }else{
         if ($conn->connect_error) {
@@ -36,7 +36,14 @@ $conn = new mysqli('localhost', 'root', '', 'project');
             $stmt = $conn->prepare("INSERT INTO user(FName, LName, Password, Dirstrict, City, Street, HouseNo, PhoneNo, Email, Dateofbirth) VALUES (?,?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param("ssssssssss", $fname, $lname, $password, $district, $city, $street, $house_no, $phonenum, $email, $dateofbirth);
             $stmt->execute();
-            echo ("Registration Successfully Completed");
+            $query_user = "SELECT * FROM user WHERE Email = '$email' AND Password = '$password'";
+            $result_user = mysqli_query($conn, $query_user);
+            $user_row = mysqli_fetch_assoc($result_user);
+            $_SESSION['auth'] = 'true';
+            $_SESSION['UserId'] = $user_row['UserId'];
+            header("Location: http://localhost/e19-co226-Online-Grocery-Shop/Homepage/Project.php");
+            exit;
+            
             // Close the statement
             $stmt->close();
         }
