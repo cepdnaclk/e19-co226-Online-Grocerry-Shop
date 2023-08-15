@@ -27,7 +27,7 @@ create table ADMIN (
 
 
 create table COURIER(
-    Id int,
+    Id int auto_increment,
     CourierName VARCHAR(30),
     Salary float,
     StartDate date,
@@ -74,7 +74,7 @@ create table ORDER_ITEMS(
 
 
 create table SUPPLIER(
-    Id int,
+    Id int auto_increment,
     SupplierName varchar(30),
     Email varchar(30),
     PhoneNo int,
@@ -82,13 +82,6 @@ create table SUPPLIER(
     SupplierImage mediumblob,
     primary key (Id)
 );
-
-create table SUPPLIER_PRODUCT(
-    SupplierId int,
-    ProductId int,
-    foreign key (SupplierId) references SUPPLIER(Id),
-    foreign key (ProductID) references product(Id)
-); 
 
 create table SUPPLY(
     Id int auto_increment,
