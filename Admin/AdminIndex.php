@@ -76,6 +76,34 @@
             </div>
 
         </div>
+
+        <br>
+        <br>
+        <br>
+
+        <div class="row justify-content-center">
+            <div class="col-6 ">
+                <div class="card" style="width: 18rem; margin-top: 8px !important; margin-bottom: 8px !important; margin-left: 260px !important;">
+                    <img src="images/customer.jpg" class="card-img-top" alt="Customer logo is missing" style="height: 200px; width:200px !important; margin-left: 40px !important; ">
+                    <div class="card-body">
+                        <h5 class="courier-card">Customers</h5>
+                        <p class="card-text">Click below to look into the customer details!</p>
+                        <a href="Skymart cruds/courier crud/CourierIndex.php" class="btn btn-primary">View Customer Info</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-6">
+                <div class="card" style="width: 18rem; margin-left: 40px !important; margin-top: 8px !important; margin-bottom: 8px !important;">
+                    <img src="images/order.jpg" class="card-img-top" alt="Order logo is missing" style="height: 200px; width:200px !important; margin-left: 40px !important; ">
+                    <div class="card-body">
+                        <h5 class="courier-card">Orders</h5>
+                        <p class="card-text">Click below to look into the order details and process them!</p>
+                        <a href="Skymart cruds/courier crud/CourierIndex.php" class="btn btn-primary">View Order Info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -90,6 +118,11 @@
     </script>
 
 
+    <footer class="bg-light text-center py-3">
+        <div class="container">
+            <p>&copy; 2023 Sky Mart. All rights reserved.</p>
+        </div>
+    </footer>
 
     <!--bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
