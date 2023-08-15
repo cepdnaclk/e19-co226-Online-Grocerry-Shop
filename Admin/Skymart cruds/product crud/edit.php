@@ -94,6 +94,7 @@ if (isset($_POST["submit"])) {
             <br>
           </div>
       </div>
+      <br>
       <div class="col-2"></div>
       <div class="col-6" style="background-color: rgba(193, 234, 243, 0.6);padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); height:fit-content; ">
           <div class="text-center mb-4">
