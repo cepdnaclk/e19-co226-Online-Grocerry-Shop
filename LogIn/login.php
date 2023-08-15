@@ -2,7 +2,7 @@
 
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $conn = new mysqli('localhost', 'root', '', 'co226');
+        $conn = new mysqli('localhost', 'root', '', 'project');
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
@@ -26,6 +26,6 @@
                     exit;
                 } else {
                     $output = "Sorry, we can't find an account with this email address. or incorrect password. Please try again";
-                    echo "<script>alert('$output'); window.location.href = './html/LogIn.php';</script>";
+                    echo "<script>alert('$output'); window.location.href = 'http://localhost/e19-co226-Online-Grocery-Shop/LogIn/LogIn.html';</script>";
                 }
     ?>

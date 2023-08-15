@@ -11,7 +11,7 @@ $city = $_POST['city'];
 $street = $_POST['street'];
 $house_no = $_POST['house_no'];
 
-$conn = new mysqli('localhost', 'root', '', 'co226');
+$conn = new mysqli('localhost', 'root', '', 'project');
     
     // Check connection
     if ($conn->connect_error) {
