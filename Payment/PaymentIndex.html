@@ -27,13 +27,13 @@
     </style>
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Payments Navbar -->
     <nav class="navbar bg-body-tertiary" style="background-color: #9ac9ea!important">
         <div class="container-fluid">
             <a class="navbar-brand">Payments</a>
-            <button class="btn btn-outline-success" type="submit" id="Navbar-home">Home</button> 
+            <button class="btn btn-outline-success" type="submit" id="Navbar-home">Home</button>
         </div>
     </nav>
 
@@ -46,20 +46,25 @@
             <div class="col-md-6">
                 <div class="left-container">
                     <h3>Billing Details..!</h3>
-                    <div class="showing-Details">
-                        <p>1. Customer ID: <span id="customer-id-display"></span></p>
-                        <p>2. Order ID: <span id="order-id-display"></span></p>
-                        <p>3. Total Amount: <span id="total-amount-display"></span></p>
-                        <p>4. Delivery Date: <span id="delivery-date-id-display"></span></p>
-                    </div>
+                    <!-- Displaying data from URL parameters -->
+                    <div>1. Total Amount: <span id="displayTotalAmount"></span></div><br>
+                    <div>2. Customer ID: <span id="displayCustomerId"></span></div><br>
+                    <div>3. Order Date: <span id="displayOrderDate"></span></div><br>
+                    <div>4. Delivery Date: <span id="displayDeliveryDate"></span></div><br>
+                    
 
-                    <br>
-                    <br>
-                    <br>
+                     <!-- Pay Now button -->
+                    <form id="payment-form" action="Process_payment.php" method="POST">                   
+                        <input type="hidden" name="customerId" id="customerId" value="">
+                        <input type="hidden" name="totalAmount" id="totalAmount" value="">
+                        <input type="hidden" name="orderDate" id="orderDate" value="">
+                        <input type="hidden" name="deliveryDate" id="deliveryDate" value="">
+                        <button type="submit" id="payment-confirm-button" style="width: 100px;">Confirm</button>
+                    </form>
+
                     
-                    
-                        <img src="Accepted Cards.png" class="img-fluid">
-                        <a href="send data.html">Back</a>  <!--Replace 'index.html' with your home page URL-->
+                    <img src="Accepted Cards.png" class="img-fluid">
+                    <a href="send data.html">Back</a>
                 </div>
             </div>
 
@@ -82,41 +87,79 @@
                             <label for="cvv">CVV:</label>
                             <input type="text" id="cvv" name="cvv" placeholder="xxx" required>
                         </div>
-                        <button type="submit" class="btn btn-success btn-block" id="pay-now-button">Pay Now</button>
+                        <button type="submit" class="btn btn-outline-success" id="pay-now-button" style="align-self: center;width: 100px;">Pay Now</button>
                     </form>
+                     
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Function to get the value of a query parameter from the URL
-        function getQueryParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
+        // Extract data from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const totalAmount = urlParams.get('totalAmount');
+        const customerId = urlParams.get('customerId');
+        const orderDate = urlParams.get('orderDate');
+        const deliveryDate = urlParams.get('deliveryDate');
+
+        // Display the received data
+        document.getElementById('displayTotalAmount').textContent = totalAmount;
+        document.getElementById('displayCustomerId').textContent = customerId;
+        document.getElementById('displayOrderDate').textContent = orderDate;
+        document.getElementById('displayDeliveryDate').textContent = deliveryDate;
+
+        // Set hidden input values
+        document.getElementById('customerId').value = customerId;
+        document.getElementById('totalAmount').value = totalAmount;
+        document.getElementById('orderDate').value = orderDate;
+        document.getElementById('deliveryDate').value = deliveryDate;
+    </script>
+
+<script>
+    // Add an event listener to the form submission
+    document.getElementById('payment-confirm-button').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        // Get form field values
+        const customerId = document.getElementById('customerId').value;
+        const totalAmount = document.getElementById('totalAmount').value;
+        const orderDate = document.getElementById('orderDate').value;
+        const deliveryDate = document.getElementById('deliveryDate').value;
+
+        // Display a success message
+        alert('Your order is confirmed.');
+    });
+
+    // Add an event listener to the form submission
+    document.getElementById('pay-now-button').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+        
+        // Get form field values
+        const cardNumber = document.getElementById('cardNumber').value;
+        const cardName = document.getElementById('cardName').value;
+        const expiryDate = document.getElementById('expiryDate').value;
+        const cvv = document.getElementById('cvv').value;
+        
+        // Check if all fields are filled
+        if (cardNumber && cardName && expiryDate && cvv) {
+            // Display an alert if the form is filled
+            alert('Payment successful');
+            resetForm();
+        } else {
+            alert('Please fill in all the fields');
         }
+    });
 
-        // Get the data from the URL
-        const totalAmountValue = getQueryParameter('totalAmount');
-        const orderIdValue = getQueryParameter('orderId');
-        const customerIdValue = getQueryParameter('customerId');
-        const deliveryDateValue = getQueryParameter('deliveryDate');
+    // Function to reset the form fields
+    function resetForm() {
+        document.getElementById('cardNumber').value = '';
+        document.getElementById('cardName').value = '';
+        document.getElementById('expiryDate').value = '';
+        document.getElementById('cvv').value = '';
+    }
+</script>
 
-        // Display the data on the page
-        document.getElementById('total-amount-display').textContent = totalAmountValue;
-        document.getElementById('order-id-display').textContent = orderIdValue;
-        document.getElementById('customer-id-display').textContent = customerIdValue;
-        document.getElementById('delivery-date-id-display').textContent = deliveryDateValue;
-    
-    </script>
-
-    <script>
-        // JavaScript to handle home button click event
-        document.getElementById('Navbar-home').addEventListener('click', function() {
-            // Redirect the user to the home page
-            window.location.href = 'send data.html'; // Replace 'index.html' with your home page URL
-        });
-    </script>
 
 </body>
 </html>
