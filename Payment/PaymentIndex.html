@@ -27,13 +27,13 @@
     </style>
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Payments Navbar -->
     <nav class="navbar bg-body-tertiary" style="background-color: #9ac9ea!important">
         <div class="container-fluid">
             <a class="navbar-brand">Payments</a>
-            <button class="btn btn-outline-success" type="submit" id="Navbar-home">Home</button> 
+            <button class="btn btn-outline-success" type="submit" id="Navbar-home">Home</button>
         </div>
     </nav>
 
@@ -47,19 +47,17 @@
                 <div class="left-container">
                     <h3>Billing Details..!</h3>
                     <div class="showing-Details">
-                        <p>1. Customer ID: <span id="customer-id-display"></span></p>
-                        <p>2. Order ID: <span id="order-id-display"></span></p>
-                        <p>3. Total Amount: <span id="total-amount-display"></span></p>
-                        <p>4. Delivery Date: <span id="delivery-date-id-display"></span></p>
+                        <p>1. Total Amount: <span id="displayTotalAmount"></span></p>
+                        <p>2. Customer ID: <span id="displayCustomerId"></span></p>
+                        <p>3. Order Date: <span id="displayOrderDate"></span></p>
+                        <p>4. Delivery Date: <span id="displayDeliveryDate"></span></p>                    
                     </div>
+                    <br>
+                    <br>
+                    <br>
 
-                    <br>
-                    <br>
-                    <br>
-                    
-                    
-                        <img src="Accepted Cards.png" class="img-fluid">
-                        <a href="send data.html">Back</a>  <!--Replace 'index.html' with your home page URL-->
+                    <img src="Accepted Cards.png" class="img-fluid">
+                    <a href="send data.html">Back</a>
                 </div>
             </div>
 
@@ -82,39 +80,82 @@
                             <label for="cvv">CVV:</label>
                             <input type="text" id="cvv" name="cvv" placeholder="xxx" required>
                         </div>
-                        <button type="submit" class="btn btn-success btn-block" id="pay-now-button">Pay Now</button>
+                        <!--The button should be placed here actually-->
                     </form>
+                    <button type="submit" class="btn btn-success btn-block" id="pay-now-button">Pay Now</button> 
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Function to get the value of a query parameter from the URL
-        function getQueryParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-
-        // Get the data from the URL
-        const totalAmountValue = getQueryParameter('totalAmount');
-        const orderIdValue = getQueryParameter('orderId');
-        const customerIdValue = getQueryParameter('customerId');
-        const deliveryDateValue = getQueryParameter('deliveryDate');
-
-        // Display the data on the page
-        document.getElementById('total-amount-display').textContent = totalAmountValue;
-        document.getElementById('order-id-display').textContent = orderIdValue;
-        document.getElementById('customer-id-display').textContent = customerIdValue;
-        document.getElementById('delivery-date-id-display').textContent = deliveryDateValue;
+        // Extract data from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const totalAmount = urlParams.get('totalAmount');
+        const customerId = urlParams.get('customerId');
+        const orderDate = urlParams.get('orderDate');
+        const deliveryDate = urlParams.get('deliveryDate');
     
-    </script>
+        // Display the received data
+        document.getElementById('displayTotalAmount').textContent = totalAmount;
+        document.getElementById('displayCustomerId').textContent = customerId;
+        document.getElementById('displayOrderDate').textContent = orderDate;
+        document.getElementById('displayDeliveryDate').textContent = deliveryDate;
+    
+        document.getElementById('pay-now-button').addEventListener('click', function() {
 
+        // pay now button process
+        const payNowButton = document.getElementById('pay-now-button');
+        // Change button color when clicked
+        payNowButton.classList.remove('btn-success');
+        payNowButton.classList.add('btn-warning'); 
+
+        // Prepare the data to send as JSON
+        const postData = {
+            customerId: customerId,
+            totalAmount: totalAmount,
+            orderDate: orderDate,
+            deliveryDate: deliveryDate
+        };
+
+        // Make an AJAX request to Process_payment.php using POST
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'Process_payment.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+        // Make sure to set the request method to POST
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // Parse the JSON response
+                    const jsonResponse = JSON.parse(xhr.responseText);
+
+                    // Display a message to the user based on the response
+                    if (jsonResponse.success) {
+                        console.log(jsonResponse.message); // Success message
+                    } else {
+                        console.error(jsonResponse.message); // Error message
+                    }
+                } else {
+                    // Error occurred
+                    console.error('Error:', xhr.statusText);
+                }
+            }
+        };
+
+        // Convert data to JSON and send the request
+        xhr.send(JSON.stringify(postData));
+        });
+
+    </script>
+    
     <script>
         // JavaScript to handle home button click event
         document.getElementById('Navbar-home').addEventListener('click', function() {
             // Redirect the user to the home page
-            window.location.href = 'send data.html'; // Replace 'index.html' with your home page URL
+            window.location.href = 'send data.html'; // Replace with your home page URL
         });
     </script>
 
