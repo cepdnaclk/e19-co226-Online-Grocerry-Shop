@@ -72,7 +72,7 @@ $check_query = mysqli_num_rows($query_run);
                             <a class="dropdown-item" href="Profile.php">Profile</a>
                             <a class="dropdown-item" href="Profile.php#changePassword">Change password</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="http://localhost/co226/e19-co226-Online-Grocerry-Shop/LogIn/login.php">Logout</a>
                             </div>
                         </li>
                     </ul>
@@ -156,10 +156,6 @@ $check_query = mysqli_num_rows($query_run);
             var encodedProductIds = encodeURIComponent(productIdsString);
             window.location.href = 'Cart.php?productIds=' + encodedProductIds;
     });
-    </script>
-
-    <script>
-        
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
