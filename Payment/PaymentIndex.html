@@ -46,16 +46,23 @@
             <div class="col-md-6">
                 <div class="left-container">
                     <h3>Billing Details..!</h3>
-                    <div class="showing-Details">
-                        <p>1. Total Amount: <span id="displayTotalAmount"></span></p>
-                        <p>2. Customer ID: <span id="displayCustomerId"></span></p>
-                        <p>3. Order Date: <span id="displayOrderDate"></span></p>
-                        <p>4. Delivery Date: <span id="displayDeliveryDate"></span></p>                    
-                    </div>
-                    <br>
-                    <br>
-                    <br>
+                    <!-- Displaying data from URL parameters -->
+                    <div>1. Total Amount: <span id="displayTotalAmount"></span></div><br>
+                    <div>2. Customer ID: <span id="displayCustomerId"></span></div><br>
+                    <div>3. Order Date: <span id="displayOrderDate"></span></div><br>
+                    <div>4. Delivery Date: <span id="displayDeliveryDate"></span></div><br>
+                    
 
+                     <!-- Pay Now button -->
+                    <form id="payment-form" action="Process_payment.php" method="POST">                   
+                        <input type="hidden" name="customerId" id="customerId" value="">
+                        <input type="hidden" name="totalAmount" id="totalAmount" value="">
+                        <input type="hidden" name="orderDate" id="orderDate" value="">
+                        <input type="hidden" name="deliveryDate" id="deliveryDate" value="">
+                        <button type="submit" id="payment-confirm-button" style="width: 100px;">Confirm</button>
+                    </form>
+
+                    
                     <img src="Accepted Cards.png" class="img-fluid">
                     <a href="send data.html">Back</a>
                 </div>
@@ -80,9 +87,9 @@
                             <label for="cvv">CVV:</label>
                             <input type="text" id="cvv" name="cvv" placeholder="xxx" required>
                         </div>
-                        <!--The button should be placed here actually-->
+                        <button type="submit" class="btn btn-outline-success" id="pay-now-button" style="align-self: center;width: 100px;">Pay Now</button>
                     </form>
-                    <button type="submit" class="btn btn-success btn-block" id="pay-now-button">Pay Now</button> 
+                     
                 </div>
             </div>
         </div>
@@ -95,69 +102,64 @@
         const customerId = urlParams.get('customerId');
         const orderDate = urlParams.get('orderDate');
         const deliveryDate = urlParams.get('deliveryDate');
-    
+
         // Display the received data
         document.getElementById('displayTotalAmount').textContent = totalAmount;
         document.getElementById('displayCustomerId').textContent = customerId;
         document.getElementById('displayOrderDate').textContent = orderDate;
         document.getElementById('displayDeliveryDate').textContent = deliveryDate;
-    
-        document.getElementById('pay-now-button').addEventListener('click', function() {
 
-        // pay now button process
-        const payNowButton = document.getElementById('pay-now-button');
-        // Change button color when clicked
-        payNowButton.classList.remove('btn-success');
-        payNowButton.classList.add('btn-warning'); 
-
-        // Prepare the data to send as JSON
-        const postData = {
-            customerId: customerId,
-            totalAmount: totalAmount,
-            orderDate: orderDate,
-            deliveryDate: deliveryDate
-        };
-
-        // Make an AJAX request to Process_payment.php using POST
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'Process_payment.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-
-        // Make sure to set the request method to POST
-        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Parse the JSON response
-                    const jsonResponse = JSON.parse(xhr.responseText);
-
-                    // Display a message to the user based on the response
-                    if (jsonResponse.success) {
-                        console.log(jsonResponse.message); // Success message
-                    } else {
-                        console.error(jsonResponse.message); // Error message
-                    }
-                } else {
-                    // Error occurred
-                    console.error('Error:', xhr.statusText);
-                }
-            }
-        };
-
-        // Convert data to JSON and send the request
-        xhr.send(JSON.stringify(postData));
-        });
-
+        // Set hidden input values
+        document.getElementById('customerId').value = customerId;
+        document.getElementById('totalAmount').value = totalAmount;
+        document.getElementById('orderDate').value = orderDate;
+        document.getElementById('deliveryDate').value = deliveryDate;
     </script>
-    
-    <script>
-        // JavaScript to handle home button click event
-        document.getElementById('Navbar-home').addEventListener('click', function() {
-            // Redirect the user to the home page
-            window.location.href = 'send data.html'; // Replace with your home page URL
-        });
-    </script>
+
+<script>
+    // Add an event listener to the form submission
+    document.getElementById('payment-confirm-button').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        // Get form field values
+        const customerId = document.getElementById('customerId').value;
+        const totalAmount = document.getElementById('totalAmount').value;
+        const orderDate = document.getElementById('orderDate').value;
+        const deliveryDate = document.getElementById('deliveryDate').value;
+
+        // Display a success message
+        alert('Your order is confirmed.');
+    });
+
+    // Add an event listener to the form submission
+    document.getElementById('pay-now-button').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+        
+        // Get form field values
+        const cardNumber = document.getElementById('cardNumber').value;
+        const cardName = document.getElementById('cardName').value;
+        const expiryDate = document.getElementById('expiryDate').value;
+        const cvv = document.getElementById('cvv').value;
+        
+        // Check if all fields are filled
+        if (cardNumber && cardName && expiryDate && cvv) {
+            // Display an alert if the form is filled
+            alert('Payment successful');
+            resetForm();
+        } else {
+            alert('Please fill in all the fields');
+        }
+    });
+
+    // Function to reset the form fields
+    function resetForm() {
+        document.getElementById('cardNumber').value = '';
+        document.getElementById('cardName').value = '';
+        document.getElementById('expiryDate').value = '';
+        document.getElementById('cvv').value = '';
+    }
+</script>
+
 
 </body>
 </html>

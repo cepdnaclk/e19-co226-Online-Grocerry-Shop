@@ -1,9 +1,5 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "PUT") {
-    // Receive JSON data from the request body
-    $json_data = file_get_contents("php://input");
-    $data = json_decode($json_data, true);
-
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Database connection
     $servername = "localhost";
     $username = "root";
@@ -17,14 +13,15 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
     }
 
     // Data variables
-    $customer_id = $data['customerId'];
-    $total_amount = $data['totalAmount'];
-    $order_date = $data['orderDate'];
-    $delivery_date = $data['deliveryDate'];
+    $customer_id = $_POST['customerId'];
+    $total_amount = $_POST['totalAmount'];
+    $order_date = $_POST['orderDate'];
+    $delivery_date = $_POST['deliveryDate'];
+    $payment_method ='card';
 
     // Prepare and execute SQL query
-    $stmt = $conn->prepare("INSERT INTO ordertable (CustomerId, Amount, OrderDate, DeliveryDate) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $customer_id, $total_amount, $order_date, $delivery_date);
+    $stmt = $conn->prepare("INSERT INTO ordertable (CustomerId, Amount, OrderDate, DeliveryDate,PaymentMethod) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $customer_id, $total_amount, $order_date, $delivery_date,$payment_method);
 
     $response = array();
 
@@ -44,6 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
 } else {
     header("HTTP/1.1 405 Method Not Allowed");
     header("Allow: POST");
-    echo "Method Not Allowed";
+    echo "alert('Method Not Allowed')";
 }
 ?>
