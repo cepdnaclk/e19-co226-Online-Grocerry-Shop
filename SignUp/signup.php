@@ -27,7 +27,7 @@ $conn = new mysqli('localhost', 'root', '', 'project');
     
     if ($result->num_rows > 0) {
         $output = "Email address already exists.";
-        echo "<script>alert('$output'); window.location.href = 'http://localhost/e19-co226-Online-Grocery-Shop/SignUp/SignUp.html';</script>";
+        echo "<script>alert('$output'); window.location.href = 'http://localhost/co226/e19-co226-Online-Grocerry-Shop/SignUp/SignUp.html';</script>";
         
     }else{
         if ($conn->connect_error) {
@@ -41,7 +41,7 @@ $conn = new mysqli('localhost', 'root', '', 'project');
             $user_row = mysqli_fetch_assoc($result_user);
             $_SESSION['auth'] = 'true';
             $_SESSION['UserId'] = $user_row['UserId'];
-            header("Location: http://localhost/e19-co226-Online-Grocery-Shop/Homepage/Project.php");
+            header("Location: 'http://localhost/co226/e19-co226-Online-Grocerry-Shop/Homepage/'");
             exit;
             
             // Close the statement

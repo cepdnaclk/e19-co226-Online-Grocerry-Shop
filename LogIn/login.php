@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user_row = mysqli_fetch_assoc($result_user);
         $_SESSION['auth'] = 'true';
         $_SESSION['UserId'] = $user_row['UserId'];
-        header("Location: http://localhost/e19-co226-Online-Grocery-Shop/Homepage/Project.php");
+        header("Location: http://localhost/co226/e19-co226-Online-Grocerry-Shop/Homepage/Project.php");
         exit;
     }
 }
