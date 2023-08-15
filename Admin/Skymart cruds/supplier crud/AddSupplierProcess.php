@@ -8,7 +8,6 @@ if ($conn->connect_error) {
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $supplier_id = $_POST['supplier_id'];
     $supplier_name = $_POST['supplier_name'];
     $email = $_POST['email'];
     $phone_number = $_POST['phone_number'];
@@ -25,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Prepare and execute the SQL statement
-    $stmt = $conn->prepare("INSERT INTO supplier (Id, SupplierName, Email, PhoneNo, DuePayment, SupplierImage) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("dsssds",$supplier_id, $supplier_name, $email, $phone_number, $due_payment, $supplier_image);
+    $stmt = $conn->prepare("INSERT INTO supplier (SupplierName, Email, PhoneNo, DuePayment, SupplierImage) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssds",$supplier_name, $email, $phone_number, $due_payment, $supplier_image);
 
     if ($stmt->execute()) {
         header("Location: SupplierIndex.php?msg=New supplier added successfully");
