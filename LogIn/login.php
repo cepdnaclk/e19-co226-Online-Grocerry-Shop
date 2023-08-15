@@ -80,6 +80,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             event.preventDefault(); // Prevent the form from submitting
         });
     </script>
+
+    <footer class="bg-light text-center py-3" style="margin-left: 1080px;">
+            <div class="container">
+                <p>&copy; 2023 Sky Mart. All rights reserved.</p>
+            </div>
+    </footer>
     
 </body>
 </html>
