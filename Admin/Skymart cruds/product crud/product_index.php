@@ -111,7 +111,7 @@
 
     <script>
       document.getElementById('product_index_back_button').addEventListener('click', function() {
-          window.location.href='http://localhost/co226%20project/Admin/AdminIndex.php'; // Replace 'Admin_home.html' with your Admin home page URL
+          window.location.href='http://localhost/co226/e19-co226-Online-Grocerry-Shop/Admin/AdminIndex.php'; // Replace 'Admin_home.html' with your Admin home page URL
       });
     </script>
     

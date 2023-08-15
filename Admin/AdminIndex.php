@@ -88,7 +88,7 @@
                     <div class="card-body">
                         <h5 class="courier-card">Customers</h5>
                         <p class="card-text">Click below to look into the customer details!</p>
-                        <a href="Skymart cruds/courier crud/CourierIndex.php" class="btn btn-primary">View Customer Info</a>
+                        <a href="Skymart cruds/customer crud/CustomerIndex.php" class="btn btn-primary">View Customer Info</a>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                     <div class="card-body">
                         <h5 class="courier-card">Orders</h5>
                         <p class="card-text">Click below to look into the order details and process them!</p>
-                        <a href="Skymart cruds/courier crud/CourierIndex.php" class="btn btn-primary">View Order Info</a>
+                        <a href="Skymart cruds/order crud/OrderIndex.php" class="btn btn-primary">View Order Info</a>
                     </div>
                 </div>
             </div>
