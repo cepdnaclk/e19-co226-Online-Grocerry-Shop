@@ -46,13 +46,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $response['success'] = true;
             $response['message'] = "Payment processed and data inserted successfully!";
             $redirectUrl = 'project.php?reload=true'; 
+            
+
+            $sql = "SELECT Id FROM ordertable ORDER BY id DESC LIMIT 1"; 
+
+            $result = $conn->query($sql);
+
+
+            foreach ($productIds as $key => $value){
+
+                $query = "SELECT * FROM product WHERE Id = $value";
+                $query_run = mysqli_query($conn,$query);
+                $check_query = mysqli_num_rows($query_run);
+                $row = mysqli_fetch_assoc($query_run);
+                $quantity = 1;
+
+                $stmt1 = $conn->prepare("INSERT INTO order_items (OrderId, ProductID, Quantity,Price,) VALUES ( ?, ?, ?, ?)");
+                $stmt1->bind_param("ssss", $result, $value, $quantity, $row['Price']);
+                
+            }
+
             header("Location: $redirectUrl");
+            $stmt1->close();
+
         } else {
             $response['success'] = false;
             $response['message'] = "Error: " . $stmt->error;
         }
 
         $stmt->close();
+
 
         // Send JSON response
         header('Content-Type: application/json');

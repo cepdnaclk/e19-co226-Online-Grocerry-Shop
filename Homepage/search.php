@@ -1,28 +1,23 @@
 <?php
-session_start();
-$userId = $_SESSION['UserId'];
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "project";
-$conn = new mysqli($servername, $username, $password,$dbname);
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    // Database connection
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "project";
 
-if ($conn->connect_error){
-    die("Connection error: ".$conn->connect_error);
-}
-$query = "SELECT * FROM product";
-$query_run = mysqli_query($conn,$query);
-$check_query = mysqli_num_rows($query_run);
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grocery Store</title>
+    <title>Search results</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="design.css">
@@ -31,7 +26,7 @@ $check_query = mysqli_num_rows($query_run);
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-md">
-                <a href=# class="navbar-brand">
+                <a href="Project.php" class="navbar-brand">
                     <img src="images/logo.png" alt="Store" height="60">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -88,53 +83,72 @@ $check_query = mysqli_num_rows($query_run);
         
     </header>
 
-    <section class="hero  text-white text-center py-5" style="background-color: #70b3ff" >
-        <div class="container" style="padding: 0%;">
-            <h1 style="font: sans-serif;">Welcome to Sky Mart</h1>
-        </div>
-    </section>
 
     <section class="products py-5">
         <div class="container">
-            <h2 class="text-center mb-4">Featured Products</h2>
 
             <div class="row">
                 <?php
-                if ($check_query)
-                {
-                    while ($row = mysqli_fetch_assoc($query_run)){
-                        $imageData = base64_encode($row['Image']); 
-                    ?>
-                        <div class="col-lg-3 col-md-4 mb-3" >
-                            <div class="card">
-                            <img src='data:image/jpg;base64,<?php echo $imageData; ?>' class="card-img-top" style="height : 150px;">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo $row['ProductName']; ?></h5>
-                                    <p class="card-text"><?php echo $row['Description']; ?></p>
-                                    <h5 class = "card-title">LKR <?php echo number_format($row['SellingPrice'], 2); ?></h5>
-                                    <button  class="addToCartButton btn btn-primary" data-product-id = <?php echo $row['Id']; ?> >Add to Cart</button>
+                if (isset($_GET['keyword'])) {
+                    $keyword = $_GET['keyword'];
+            
+                    if (!empty($keyword)) {
+            
+                        $query = "SELECT * FROM product WHERE ProductName LIKE '%$keyword%' OR Description LIKE '%$keyword%' OR Category LIKE '%$keyword%'";
+                        $result = $conn->query($query);
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $imageData = base64_encode($row['Image']); 
+                            ?>
+                                <div class="col-lg-3 col-md-4 mb-3" >
+                                    <div class="card">
+                                    <img src='data:image/jpg;base64,<?php echo $imageData; ?>' class="card-img-top" style="height : 150px;">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $row['ProductName']; ?></h5>
+                                            <p class="card-text"><?php echo $row['Description']; ?></p>
+                                            <h5 class = "card-title">LKR <?php echo number_format($row['SellingPrice'], 2); ?></h5>
+                                            <button  class="addToCartButton btn btn-primary" data-product-id = <?php echo $row['Id']; ?> >Add to Cart</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    <?php
+                            <?php
+                            }
+                        } 
                     }
                 }
-                else
-                {
-                    echo "Error in connecting with product table";
+                        ?>
+<?php
+        if (isset($_GET['keyword'])) {
+                $keyword = $_GET['keyword'];
+                    
+                if (!empty($keyword)) {
+                    $query = "SELECT * FROM product WHERE ProductName LIKE '%$keyword%' OR Description LIKE '%$keyword%' OR Category LIKE '%$keyword%'";
+                    $result = $conn->query($query);
+                    
+                    if ($result->num_rows <= 0) {
+                        echo "<h4 class='container' > No results found. </h4>";
+                    }
+                } else {
+                    echo "<h4 class='container'>'Please enter a search keyword.'</h4>";
                 }
-                ?>
+            }
+            ?>
+
 
             </div>
         </div>
     </section>
 
-    <footer class="bg-light text-center py-3">
-        <div class="container">
-            <p>&copy; 2023 Sky Mart. All rights reserved.</p>
-        </div>
-    </footer>
 
+<?php      
+
+    $conn->close();
+} else {
+    header("HTTP/1.1 405 Method Not Allowed");
+    header("Allow: GET");
+    echo "Method Not Allowed";
+}
+?>
 
     <script>
         var addToCartButtons = document.querySelectorAll(".addToCartButton");
@@ -163,11 +177,8 @@ $check_query = mysqli_num_rows($query_run);
             window.location.href = 'Cart.php?productIds=' + encodedProductIds;
     });
     </script>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
-<?php
-    $conn->close();
-?>

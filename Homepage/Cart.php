@@ -1,4 +1,7 @@
 <?php
+session_start();
+$userId = $_SESSION['UserId'];
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -13,7 +16,7 @@ if (isset($_GET['productIds'])) {
     $encodedProductIds = $_GET['productIds'];
     
     $productIds = json_decode(urldecode($encodedProductIds), true);
-
+    $_SESSION['$productIds'] = $productIds;
 }
 $jsonData_1 = json_encode($productIds);
 echo "<script>var Id = $jsonData_1;</script>";
@@ -161,7 +164,7 @@ $price = [];
         const selectedMethod = document.getElementById('selectedMethod');
 
 
-        document.getElementById('customerId').value = 1;
+        document.getElementById('customerId').value = parseInt( <?php echo $userId; ?>);
         document.getElementById('totalAmount').value = total;
         document.getElementById('orderDate').value = orderDate;
         document.getElementById('deliveryDate').value = deliveryDate;
