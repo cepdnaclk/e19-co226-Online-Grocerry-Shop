@@ -13,15 +13,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Data variables
-    $customer_id = $_POST['customerId'];
+    $user_id = $_POST['userId'];
     $total_amount = $_POST['totalAmount'];
     $order_date = $_POST['orderDate'];
     $delivery_date = $_POST['deliveryDate'];
     $payment_method ='card';
 
     // Prepare and execute SQL query
-    $stmt = $conn->prepare("INSERT INTO ordertable (CustomerId, Amount, OrderDate, DeliveryDate,PaymentMethod) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $customer_id, $total_amount, $order_date, $delivery_date,$payment_method);
+    $stmt = $conn->prepare("INSERT INTO ordertable (UserId, Amount, OrderDate, DeliveryDate,PaymentMethod) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $user_id, $total_amount, $order_date, $delivery_date,$payment_method);
 
     $response = array();
 

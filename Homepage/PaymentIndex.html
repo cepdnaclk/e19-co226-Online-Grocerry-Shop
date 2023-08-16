@@ -48,14 +48,14 @@
                     <h3>Billing Details..!</h3>
                     <!-- Displaying data from URL parameters -->
                     <div>1. Total Amount: <span id="displayTotalAmount"></span></div><br>
-                    <div>2. Customer ID: <span id="displayCustomerId"></span></div><br>
+                    <div>2. User ID: <span id="displayUserId"></span></div><br>
                     <div>3. Order Date: <span id="displayOrderDate"></span></div><br>
                     <div>4. Delivery Date: <span id="displayDeliveryDate"></span></div><br>
                     
 
                      <!-- Pay Now button -->
                     <form id="payment-form" action="Process_payment.php" method="POST">                   
-                        <input type="hidden" name="customerId" id="customerId" value="">
+                        <input type="hidden" name="userId" id="userId" value="">
                         <input type="hidden" name="totalAmount" id="totalAmount" value="">
                         <input type="hidden" name="orderDate" id="orderDate" value="">
                         <input type="hidden" name="deliveryDate" id="deliveryDate" value="">
@@ -99,18 +99,18 @@
         // Extract data from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const totalAmount = urlParams.get('totalAmount');
-        const customerId = urlParams.get('customerId');
+        const userId = urlParams.get('customerId');
         const orderDate = urlParams.get('orderDate');
         const deliveryDate = urlParams.get('deliveryDate');
 
         // Display the received data
         document.getElementById('displayTotalAmount').textContent = totalAmount;
-        document.getElementById('displayCustomerId').textContent = customerId;
+        document.getElementById('displayUserId').textContent = userId;
         document.getElementById('displayOrderDate').textContent = orderDate;
         document.getElementById('displayDeliveryDate').textContent = deliveryDate;
 
         // Set hidden input values
-        document.getElementById('customerId').value = customerId;
+        document.getElementById('userId').value = userId;
         document.getElementById('totalAmount').value = totalAmount;
         document.getElementById('orderDate').value = orderDate;
         document.getElementById('deliveryDate').value = deliveryDate;

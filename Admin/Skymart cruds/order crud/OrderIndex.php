@@ -93,7 +93,7 @@
                       <td>{$row['Amount']}</td>
                       <td>{$row['DeliveryDate']}</td>
                       <td>{$row['OrderDate']}</td>
-                      <td>{$row['CustomerId']}</td>
+                      <td>{$row['UserId']}</td>
                       <td>
                           {$row['ProcessStatus']}
                           <a href='OrderProcess.php?id={$row['Id']}' class='link-dark'><i class='fa-solid fa-pen-to-square fs-5 me-3'></i></a>
