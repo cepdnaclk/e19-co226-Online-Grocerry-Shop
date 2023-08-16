@@ -1,4 +1,6 @@
 <?php
+session_start();
+$customer_id = $_SESSION['UserId'];
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Database connection
     $servername = "localhost";
@@ -13,7 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Data variables
-    $customer_id = $_POST['customerId'];
     $total_amount = $_POST['totalAmount'];
     $order_date = $_POST['orderDate'];
     $delivery_date = $_POST['deliveryDate'];
@@ -30,45 +31,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             var totalAmount = "<?php echo $total_amount; ?>";
             var orderDate = "<?php echo $order_date; ?>";
             var deliveryDate = "<?php echo $delivery_date; ?>";
-    
+
             const queryString = `totalAmount=${encodeURIComponent(totalAmount)}&customerId=${encodeURIComponent(customerId)}&orderDate=${encodeURIComponent(orderDate)}&deliveryDate=${encodeURIComponent(deliveryDate)}`;
             window.location.href = 'PaymentIndex.html?' + queryString;
         </script>
-    <?php
+<?php
     }
-    
+
 
     if ($payment_method === 'Cash on delivery') {
-        $stmt = $conn->prepare("INSERT INTO ordertable (CustomerId, Amount, OrderDate, DeliveryDate, PaymentMethod) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO ordertable (UserId, Amount, OrderDate, DeliveryDate, PaymentMethod) VALUES (?, ?, ?, ?, ?)");
         $stmt->bind_param("sssss", $customer_id, $total_amount, $order_date, $delivery_date, $payment_method);
 
         if ($stmt->execute()) {
             $response['success'] = true;
             $response['message'] = "Payment processed and data inserted successfully!";
-            $redirectUrl = 'project.php?reload=true'; 
-            
+            $redirectUrl = 'project.php?reload=true';
 
-            $sql = "SELECT Id FROM ordertable ORDER BY id DESC LIMIT 1"; 
+
+            $sql = "SELECT Id FROM ordertable ORDER BY id DESC LIMIT 1";
 
             $result = $conn->query($sql);
 
 
-            foreach ($productIds as $key => $value){
+            foreach ($productIds as $key => $value) {
 
                 $query = "SELECT * FROM product WHERE Id = $value";
-                $query_run = mysqli_query($conn,$query);
+                $query_run = mysqli_query($conn, $query);
                 $check_query = mysqli_num_rows($query_run);
                 $row = mysqli_fetch_assoc($query_run);
                 $quantity = 1;
 
                 $stmt1 = $conn->prepare("INSERT INTO order_items (OrderId, ProductID, Quantity,Price,) VALUES ( ?, ?, ?, ?)");
                 $stmt1->bind_param("ssss", $result, $value, $quantity, $row['Price']);
-                
             }
 
             header("Location: $redirectUrl");
             $stmt1->close();
-
         } else {
             $response['success'] = false;
             $response['message'] = "Error: " . $stmt->error;
