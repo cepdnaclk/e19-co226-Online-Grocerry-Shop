@@ -1,13 +1,5 @@
 <?php
 session_start();
-
-$alertMessage = isset($_SESSION['alert_message']) ? $_SESSION['alert_message'] : "";
-unset($_SESSION['alert_message']); // Clear the session variable
-
-$showAlert = isset($_GET['show_alert']) && $_GET['show_alert'] == 1;
-
-
-
 $userId = $_SESSION['UserId'];
 $servername = "localhost";
 $username = "root";
@@ -95,7 +87,7 @@ $row = mysqli_fetch_assoc($query_run)
        
 
             <div class="col-md-6">
-                <form id="changePasswordForm" action="updatePassword.php" method="post" >
+                <form id="changePasswordForm" >
                     <h2 class="mb-3">Change Password</h2>
                     <div class="form-group">
                         <label for="currentPassword">Current Password:</label>
