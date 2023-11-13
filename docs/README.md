@@ -12,9 +12,9 @@ title: Online Grocery Shop WebPage
 ---
 
 ## Team
--  e19007, Achsuthan, [e19007@eng.pdn.ac.lk](mailto:name@email.com)
--  e19134, Harnan, [e19134@eng.pdn.ac.lk](mailto:name@email.com)
--  e19266, Nithusikan, [e19266@eng.pdn.ac.lk](mailto:name@email.com)
+-  e19007, Achsuthan T., [email](mailto:e19007@eng.pdn.ac.lk)
+-  e19134, Harnan M., [email](mailto:e19134@eng.pdn.ac.lk)
+-  e19266, Nithusikan T., [email](mailto:e19266@eng.pdn.ac.lk)
 
 ## Table of Contents
 1. [Introduction](#introduction)
